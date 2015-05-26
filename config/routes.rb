@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # get 'play/:id' => 'games#play', as: :play_game
   # post 'play/:id' => 'games#process', as: :process_game
 
+  get 'respond' => 'invitations#respond', as: :respond
+
   resources :players, only: [:new, :create]
   resources :invitations
   resources :games do

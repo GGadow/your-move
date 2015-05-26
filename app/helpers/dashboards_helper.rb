@@ -1,5 +1,4 @@
 module DashboardsHelper
-
   def turn_class(game_id, player_id)
     if your_turn?(game_id, player_id)
       @class = "your_turn"
@@ -9,5 +8,4 @@ module DashboardsHelper
 
     @class
   end
-
 end

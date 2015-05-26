@@ -65,6 +65,10 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def respond
+    
+  end
+
 private
   
   def invitation_params

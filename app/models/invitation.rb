@@ -13,5 +13,4 @@ class Invitation < ActiveRecord::Base
     Player.find(recipient_player).handle
   end
 
-
 end

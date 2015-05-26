@@ -19,8 +19,13 @@
       <td><%= i.was_random_match.yesno %></td>
       <td><%= i.challenge_issued.strftime("%B %e, %Y") %></td>
       <td><%= i.challenge_expires.strftime("%B %e, %Y %l:%M %P") %></td>
+<<<<<<< HEAD
       <td><%= button_to "Accept", respond_path("y", i.link_hash), data: {confirm: "Would you like to accept this invitation?"} %></td>
       <td><%= button_to "Reject", respond_path("n", i.link_hash), data: {confirm: "You want to turn down this invitation?"} %></td>
+=======
+      <td></td>
+      <td></td>
+>>>>>>> Saving work
     </tr>
     <%end %>
   </table>
@@ -84,4 +89,5 @@
   <p>None.</p>
 <% end %>
 
+<h3>Your current games</h3>
 
