@@ -65,9 +65,6 @@ class InvitationsController < ApplicationController
     end
   end
 
-  def respond
-    
-  end
 
 private
   
