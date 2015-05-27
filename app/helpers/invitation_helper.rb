@@ -55,6 +55,8 @@ module InvitationHelper
     else
       result << player_2
       result << player_1
+    end
+
     result
   end
 

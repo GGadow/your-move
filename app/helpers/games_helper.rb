@@ -29,4 +29,5 @@ module GamesHelper
   def your_turn?(game_id, player_id)
     (whose_turn(game_id) == player_id)
   end
+
 end
