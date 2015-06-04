@@ -43,10 +43,21 @@ class GamesController < ApplicationController
   def move
     @game.move params
     @game.game_data = @game.game_obj.to_json
+    if !@game.winning_player.nil?
+      @game.game_ended = Time.now
+    end
 
     if @game.save 
       if signed_in? && @game.whose_turn > 0
-        GameMailer.notify_turn(@game.id, @game.whose_turn, current_player).deliver_now
+        if @game.winning_player.nil? 
+          #The game is still going on
+          if @game.whose_turn_id != current_player.id
+            GameMailer.notify_turn(@game.id, @game.whose_turn_id, current_player.id).deliver_now
+          end
+        else
+          #The game is ended, let everyone know
+          GameMailer.notify_end(@game.id).deliver_now
+        end
       end
       render "show"
     end

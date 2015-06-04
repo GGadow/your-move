@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
   belongs_to :player_1, :class_name => 'Player'
   belongs_to :player_2, :class_name => 'Player'
 
-  after_save :notify_game_change
+  #after_save :notify_game_change
 
   def name
     game_obj.game_type_name
@@ -64,6 +64,16 @@ class Game < ActiveRecord::Base
     game_obj.moving_player
   end
 
+  def whose_turn_id
+    if game_obj.moving_player == 1
+      player_1_id
+    elsif game_obj.moving_player == 2
+      player_2_id
+    else
+      0
+    end
+  end
+
   def game_started
     created_at
   end
@@ -83,18 +93,18 @@ class Game < ActiveRecord::Base
 
   # called by Rails when the record is saved
   def notify_game_change
-    connection.execute "NOTIFY #{channel}, #{connection.quote self.to_s}"
+ #   connection.execute "NOTIFY #{channel}, #{connection.quote self.to_s}"
   end
 
   def on_game_change
-    connection.execute "LISTEN #{channel}"
-    loop do
-      connection.raw_connection.wait_for_notify do |event, pid, game|
-        yield game
-      end
-    end
-  ensure
-    connection.execute "UNLISTEN #{channel}"
+#    connection.execute "LISTEN #{channel}"
+#    loop do
+#      connection.raw_connection.wait_for_notify do |event, pid, game|
+#        yield game
+#      end
+#    end
+#  ensure
+#    connection.execute "UNLISTEN #{channel}"
   end
 
 private
